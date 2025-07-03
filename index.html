@@ -1,307 +1,326 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的旅遊手冊</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Cerise Select - Your Global Partner for Premium Fruit Distribution</title>
+    
+    <!-- 引入 Tailwind CSS CDN，用於快速響應式設計和美觀的樣式 -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind CSS 配置：在引入 Tailwind CDN 之後定義自定義顏色 -->
+    <!-- 這樣可以確保 tailwind 物件在配置時已經被定義 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-color': '#0F344F', /* 深邃藍綠 - 更具奢華感的深藍色調 */
+                        'secondary-color': '#F5F5F5', /* 柔和淺灰 - 輕柔、乾淨的背景色 */
+                        'accent-color': '#C5A365', /* 柔和金 - 更顯典雅的古銅金色調 */
+                        'text-color': '#333333', /* 經典深灰 - 確保文字清晰可讀 */
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 引入 Google Fonts - Inter 字體，提供現代且清晰的閱讀體驗 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom font for better readability */
+        /* 由於顏色已透過 Tailwind config 定義並直接應用於 body 標籤，
+           這裡的 body 樣式可以簡化，只保留通用字體設定。 */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            font-family: 'Inter', sans-serif; /* 應用 Inter 字體 */
+            /* background-color 和 color 將由 Tailwind 類別控制 */
         }
-        /* Custom scrollbar for a cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        /* 確保所有按鈕和可互動元素都有圓角 */
+        .btn, .card, .input-field {
+            border-radius: 0.75rem; /* Tailwind 的 rounded-xl */
         }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
+
+        /* 隱藏未選中的語言內容 */
+        .lang-text.hidden {
+            display: none;
         }
     </style>
 </head>
-<body class="text-gray-800">
-    <div class="container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 max-w-4xl bg-white shadow-lg rounded-xl my-8">
+<body class="antialiased bg-secondary-color text-text-color">
+    <!-- 導航欄/頂部區域 -->
+    <header class="bg-primary-color text-secondary-color py-6 px-4 md:px-8 shadow-lg">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <!-- 公司 Logo 圖片佔位符 -->
+            <!-- 請將 'logo.png' 替換為您的實際 Logo 檔案路徑 -->
+            <img src="logo3.jpg" alt="Cerise Select Logo" class="h-10 md:h-12 rounded-lg mb-4 md:mb-0">
+            
+            <!-- 導航連結與語言切換 -->
+            <nav class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <ul class="flex space-x-6 text-lg font-medium">
+                    <li><a href="#about" class="hover:text-accent-color transition duration-300" data-nav-key="about">
+                        <span class="lang-text" data-lang="zh">關於我們</span>
+                        <span class="lang-text hidden" data-lang="en">About Us</span>
+                    </a></li>
+                    <li><a href="#products" class="hover:text-accent-color transition duration-300" data-nav-key="products">
+                        <span class="lang-text" data-lang="zh">我們的產品</span>
+                        <span class="lang-text hidden" data-lang="en">Our Products</span>
+                    </a></li>
+                    <li><a href="#contact" class="hover:text-accent-color transition duration-300" data-nav-key="contact">
+                        <span class="lang-text" data-lang="zh">聯絡我們</span>
+                        <span class="lang-text hidden" data-lang="en">Contact Us</span>
+                    </a></li>
+                </ul>
+                <!-- 語言切換按鈕 -->
+                <button id="lang-toggle" class="bg-accent-color text-primary-color px-4 py-2 rounded-xl font-semibold hover:opacity-90 transition duration-300 mt-4 md:mt-0">
+                    English
+                </button>
+            </nav>
+        </div>
+    </header>
 
-        <!-- Cover/Title Section -->
-        <header class="text-center py-10 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-md mb-8">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2">2026家族旅遊：澳洲探索之旅</h1>
-            <p class="text-sm sm:text-base mt-4 opacity-80">您的專屬旅遊手冊</p>
-        </header>
+    <!-- Hero 區塊 - 網站的首要視覺焦點 -->
+    <section class="bg-primary-color text-secondary-color py-20 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:justify-center">
+            <!-- Banner 左側 Logo 佔位符 -->
+            <!-- 請將 'logo-icon.png' 替換為您的實際 Logo 圖示檔案路徑 -->
+            <div class="md:mr-8 mb-6 md:mb-0 flex-shrink-0">
+                <img src="logo1.jpg" alt="Cerise Select Icon" class="h-24 w-24 rounded-full shadow-lg">
+            </div>
+            <div class="text-center md:text-left flex-grow">
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                    <span class="lang-text" data-lang="zh">您的全球優質水果分銷夥伴</span>
+                    <span class="lang-text hidden" data-lang="en">Your Global Partner for Premium Fruit Distribution</span>
+                </h1>
+                <p class="text-xl md:text-2xl font-light opacity-90">
+                    <span class="lang-text" data-lang="zh">Cerise Select：連接世界，傳遞新鮮。</span>
+                    <span class="lang-text hidden" data-lang="en">Cerise Select: Connecting the World, Delivering Freshness.</span>
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Introduction Section -->
-        <section class="mb-10 p-6 bg-blue-50 rounded-lg shadow-sm">
-            <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4 border-b-2 border-blue-300 pb-2">旅程簡介</h2>
-            <p class="text-base sm:text-lg leading-relaxed text-gray-700">
-                歡迎來到您的個人化澳洲探索之旅手冊！這趟為期多日的旅程將帶您體驗墨爾本的文化與歷史、菲利浦島的自然奇觀、黃金海岸的陽光海灘，以及布里斯本的城市魅力。請隨時更新此手冊，讓它成為您旅程中最棒的指南。
+    <!-- 關於我們區塊 -->
+    <section id="about" class="py-16 px-4 md:px-8 bg-secondary-color">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary-color mb-10 text-center">
+                <span class="lang-text" data-lang="zh">關於我們</span>
+                <span class="lang-text hidden" data-lang="en">About Us</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- 我們的願景 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-3xl font-semibold text-primary-color mb-6">
+                        <span class="lang-text" data-lang="zh">我們的願景</span>
+                        <span class="lang-text hidden" data-lang="en">Our Vision</span>
+                    </h3>
+                    <p class="text-lg leading-relaxed text-text-color">
+                        <span class="lang-text" data-lang="zh">
+                            在 <strong class="text-accent-color">Cerise Select</strong>，我們致力於成為您值得信賴的合作夥伴，以無與倫比的速度和新鮮度，將世界上最優質的水果帶給消費者。我們堅信，無論產地為何，每個人都應該獲得健康、充滿活力的選擇。我們的承諾在於全球採購<strong class="text-primary-color">高品質水果</strong>，並高效送達，確保終端消費者獲得愉悅的體驗。
+                        </span>
+                        <span class="lang-text hidden" data-lang="en">
+                            At <strong class="text-accent-color">Cerise Select</strong>, we are dedicated to becoming your trusted partner in bringing the world's finest fruits to consumers with unparalleled speed and freshness. We believe that everyone deserves access to healthy, vibrant choices, regardless of origin. Our commitment lies in sourcing <strong class="text-primary-color">high-quality fruits globally</strong> and delivering them efficiently, ensuring a delightful experience for the end-consumer.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- 我們的承諾 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-3xl font-semibold text-primary-color mb-6">
+                        <span class="lang-text" data-lang="zh">我們的承諾</span>
+                        <span class="lang-text hidden" data-lang="en">Our Commitment</span>
+                    </h3>
+                    <p class="text-lg leading-relaxed text-text-color">
+                        <span class="lang-text" data-lang="zh">
+                            我們秉持最高標準的品質控管和物流，確保您的果園新鮮農產品以最佳狀態送達目的地。<strong class="text-accent-color">Cerise Select</strong> 建立在可靠性、效率以及對新鮮、健康產品的熱情基礎之上。我們在此旨在與全球供應商建立強大而持久的合作夥伴關係。
+                        </span>
+                        <span class="lang-text hidden" data-lang="en">
+                            We uphold the highest standards of quality control and logistics, guaranteeing that the fresh produce from your orchards reaches its destination in optimal condition. <strong class="text-accent-color">Cerise Select</strong> is built on a foundation of reliability, efficiency, and a passion for fresh, wholesome products. We are here to foster strong, lasting partnerships with our global suppliers.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- 命名故事區塊，跨兩欄顯示 -->
+                <div class="bg-white p-8 rounded-xl shadow-md md:col-span-2">
+                    <h3 class="text-3xl font-semibold text-primary-color mb-6">
+                        <span class="lang-text" data-lang="zh">命名故事</span>
+                        <span class="lang-text hidden" data-lang="en">Our Naming Story</span>
+                    </h3>
+                    <p class="text-lg leading-relaxed text-text-color">
+                        <span class="lang-text" data-lang="zh">
+                            <strong class="text-accent-color">Cerise Select</strong> 的命名源於我們對卓越品質的承諾。
+                            「Cerise」是法語中「櫻桃」的意思，象徵著我們初期專注於櫻桃這項高品質水果的嚴選精神。
+                            我們希望透過這個名稱，傳達我們對產品來源、品質把關以及為消費者提供最佳選擇的堅持。
+                            「Select」則代表我們精挑細選、嚴格篩選的理念，確保每一批水果都符合最高標準，
+                            為全球供應商和消費者建立信任與信心。
+                        </span>
+                        <span class="lang-text hidden" data-lang="en">
+                            The name <strong class="text-accent-color">Cerise Select</strong> originates from our commitment to exceptional quality.
+                            "Cerise" is the French word for "cherry," symbolizing our initial focus on the meticulous selection of this high-quality fruit.
+                            Through this name, we aim to convey our dedication to product sourcing, quality control, and providing consumers with the best choices.
+                            "Select" represents our philosophy of meticulous curation and strict screening, ensuring that every batch of fruit meets the highest standards,
+                            building trust and confidence with both global suppliers and consumers.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我們的產品區塊 -->
+    <section id="products" class="py-16 px-4 md:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary-color mb-10 text-center">
+                <span class="lang-text" data-lang="zh">我們的產品</span>
+                <span class="lang-text hidden" data-lang="en">Our Products</span>
+            </h2>
+            <p class="text-xl text-center mb-12 text-text-color">
+                <span class="lang-text" data-lang="zh">
+                    初期，<strong class="text-accent-color">Cerise Select</strong> 專注於提供卓越的口感和品質：
+                </span>
+                <span class="lang-text hidden" data-lang="en">
+                    Initially, <strong class="text-accent-color">Cerise Select</strong> focuses on delivering the exceptional taste and quality of:
+                </span>
             </p>
-            <p class="text-base sm:text-lg leading-relaxed text-gray-700 mt-3">
-                準備好探索了嗎？讓我們一起開始這趟精彩的旅程！
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- 櫻桃產品卡片 -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-6xl mb-4" role="img" aria-label="Cherry icon">🍒</div> <!-- 使用表情符號作為圖示 -->
+                    <h3 class="text-3xl font-semibold text-primary-color mb-4">
+                        <span class="lang-text" data-lang="zh">櫻桃</span>
+                        <span class="lang-text hidden" data-lang="en">Cherries</span>
+                    </h3>
+                    <p class="text-lg leading-relaxed text-text-color">
+                        <span class="lang-text" data-lang="zh">
+                            從全球最負盛名的種植者採購，以其甜度和緊實的質地而聞名。
+                        </span>
+                        <span class="lang-text hidden" data-lang="en">
+                            Sourced from the most reputable growers worldwide, known for their sweetness and firm texture.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- 藍莓產品卡片 -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-6xl mb-4" role="img" aria-label="Blueberry icon">🫐</div> <!-- 使用表情符號作為圖示 -->
+                    <h3 class="text-3xl font-semibold text-primary-color mb-4">
+                        <span class="lang-text" data-lang="zh">藍莓</span>
+                        <span class="lang-text hidden" data-lang="en">Blueberries</span>
+                    </h3>
+                    <p class="text-lg leading-relaxed text-text-color">
+                        <span class="lang-text" data-lang="zh">
+                            優質精選，以其濃郁的風味和豐富的健康益處而廣受讚譽。
+                        </span>
+                        <span class="lang-text hidden" data-lang="en">
+                            Premium selections, celebrated for their rich flavor and abundant health benefits.
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <p class="text-lg text-center mt-12 text-text-color">
+                <span class="lang-text" data-lang="zh">
+                    我們致力於擴展產品供應，以滿足不斷變化的市場需求，同時保持我們堅定不移的卓越標準。
+                </span>
+                <span class="lang-text hidden" data-lang="en">
+                    We are committed to expanding our product offerings to meet evolving market demands while maintaining our unwavering standards of excellence.
+                </span>
             </p>
-        </section>
+        </div>
+    </section>
 
-        <!-- Daily Itinerary Section -->
-        <section class="mb-10">
-            <h2 class="text-2xl sm:text-3xl font-bold text-purple-700 mb-6 border-b-2 border-purple-300 pb-2">每日行程</h2>
-
-            <!-- DAY 0 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 0：出發前往澳洲</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">20:00：</strong> 機場接送前往機場。</p>
-                    <p><strong class="font-medium">23:30：</strong> 搭乘中華航空 CI57 班機，從 TPE 飛往 MEL。</p>
-                </div>
-            </div>
-
-            <!-- DAY 1 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 1：抵達墨爾本，菲利浦島企鵝歸巢</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">11:00：</strong> 租車前往機場接機。</p>
-                    <p><strong class="font-medium">11:40：</strong> 抵達墨爾本 (MEL)。</p>
-                    <p><strong class="font-medium">午餐：</strong> Lune Croissanterie 可頌 (車上享用)。</p>
-                    <p><strong class="font-medium">下午：</strong> 前往菲利浦島，辦理入住 nrma phillip island beachfront holiday park。</p>
-                    <p><strong class="font-medium">傍晚：</strong> 超市簡單採買。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮 或 餐廳用餐。</p>
-                    <p><strong class="font-medium">晚上：</strong> 觀賞企鵝歸巢。</p>
-                </div>
-            </div>
-
-            <!-- DAY 2 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 2：蒸汽火車與酒莊體驗</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">08:00 前：</strong> 退房出門前往 BELGRAVE 車站。</p>
-                    <p><strong class="font-medium">10:00：</strong> 搭乘 Puffing Billy Railway 蒸汽火車 (BELGRAVE Station 發車)。</p>
-                    <p><strong class="font-medium">午餐：</strong> Lakeside Railway Café。</p>
-                    <p><strong class="font-medium">12:25：</strong> 搭乘蒸汽火車回程。</p>
-                    <p><strong class="font-medium">13:15：</strong> 回到 BELGRAVE Station。</p>
-                    <p><strong class="font-medium">下午：</strong> 辦理入住 Balgownie Estate Yarra Valley 酒莊。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 酒莊晚餐。</p>
-                </div>
-            </div>
-
-            <!-- DAY 3 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 3：航空博物館與墨爾本市區</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 酒莊早餐。</p>
-                    <p><strong class="font-medium">10:00 後：</strong> 退房前往澳洲國家航空博物館 (可體驗飛行)。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">下午：</strong> 逛 Costco 採買未來三天糧食。</p>
-                    <p><strong class="font-medium">傍晚：</strong> 辦理入住 Amazing sea&habour views brand new 2B2B Apt in CBD。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                    <p><strong class="font-medium">晚上：</strong> 聖蹟達海灘看野生企鵝。</p>
-                </div>
-            </div>
-
-            <!-- DAY 4 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 4：疏芬山金礦鎮</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">08:30：</strong> 出門前往疏芬山金礦鎮。</p>
-                    <p><strong class="font-medium">10:00：</strong> 入園。</p>
-                    <p><strong class="font-medium">午餐：</strong> New York Bakery (園區內)。</p>
-                    <p><strong class="font-medium">傍晚：</strong> 返回市區。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                </div>
-            </div>
-
-            <!-- DAY 5 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 5：墨爾本市區觀光</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">10:00 前：</strong> 還車。</p>
-                    <p><strong class="font-medium">上午/下午：</strong> City Tour (女王市場、塗鴉巷、費蓮達火車站、墨爾本圖書館等)。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                </div>
-            </div>
-
-            <!-- DAY 6 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 6：飛往黃金海岸，可倫賓野生動物園</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">07:00：</strong> 出門前往機場。</p>
-                    <p><strong class="font-medium">09:20 - 11:25：</strong> 飛往黃金海岸。</p>
-                    <p><strong class="font-medium">抵達後：</strong> 租車。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">下午：</strong> 前往可倫賓野生動物園 (Currumbin Wildlife Sanctuary)。</p>
-                    <p><strong class="font-medium">傍晚：</strong> 辦理入住 Meriton Suites Surfers Paradise。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 待定。</p>
-                </div>
-            </div>
-
-            <!-- DAY 7 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 7：海洋世界 (Sea World)</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">08:30：</strong> 出門前往 Sea World。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                </div>
-            </div>
-
-            <!-- DAY 8 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 8：黃金海岸海灘與購物</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">上午：</strong> 享受黃金海岸的海灘。</p>
-                    <p><strong class="font-medium">下午：</strong> 太平洋市集購物中心 (Pacific Fair Shopping Centre) 購物。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                </div>
-            </div>
-
-            <!-- DAY 9 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 9：前往布里斯本，南岸公園</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">上午：</strong> 退房後前往布里斯本，先寄放行李再還車。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">下午：</strong> 南岸公園。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                </div>
-            </div>
-
-            <!-- DAY 10 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 10：龍柏無尾熊動物園與購物</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">08:30：</strong> 出門前往龍柏無尾熊動物園 (Lone Pine Koala Sanctuary)。</p>
-                    <p><strong class="font-medium">午餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">下午：</strong> 皇后街購物中心 (Queen Street Mall)。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 自行烹煮。</p>
-                </div>
-            </div>
-
-            <!-- DAY 11 -->
-            <div class="mb-6 p-5 bg-white rounded-lg shadow-md border-l-4 border-purple-400">
-                <h3 class="text-xl sm:text-2xl font-semibold text-purple-600 mb-3">DAY 11：布里斯本，準備返程</h3>
-                <div class="space-y-3 text-gray-700">
-                    <p><strong class="font-medium">早餐：</strong> 自理。</p>
-                    <p><strong class="font-medium">上午：</strong> 南岸公園。</p>
-                    <p><strong class="font-medium">午餐：</strong> 清冰箱。</p>
-                    <p><strong class="font-medium">晚餐：</strong> 待定。</p>
-                    <p><strong class="font-medium">傍晚：</strong> 晚餐後前往機場。</p>
-                    <p><strong class="font-medium">22:50：</strong> 搭乘中華航空 CI54 班機，從 BNE 返回 TPE。</p>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Important Information Section -->
-        <section class="mb-10 p-6 bg-yellow-50 rounded-lg shadow-sm">
-            <h2 class="text-2xl sm:text-3xl font-bold text-yellow-700 mb-4 border-b-2 border-yellow-300 pb-2">重要資訊</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
-                <div>
-                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">緊急聯絡</h3>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>當地緊急電話：110</li>
-                        <li>中華民國駐澳洲代表處：+61-2-6120-1000 (坎培拉)</li>
-                        <li>中華航空當地聯絡電話：請查詢當地機場資訊</li>
-                        <li>旅遊保險公司：[您的保險公司聯絡電話]</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">航班資訊</h3>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li><strong>去程：</strong> 2026/3/31 中華航空 CI57 (TPE - MEL) 23:30 - 11:40 (+1) 商務艙 (已訂)</li>
-                        <li><strong>澳洲境內：</strong> 2026/4/6 澳洲航空 QF876 (MEL - OOL) 09:20 - 11:25 經濟艙 (待訂)</li>
-                        <li><strong>回程：</strong> 2026/4/11 中華航空 CI54 (BNE - TPE) 22:50 - 05:45 (+1) 經濟艙 (已訂)</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">租車資訊</h3>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li><strong>墨爾本：</strong>
-                            <ul class="list-circle list-inside ml-4">
-                                <li>時間：4/1 11:00 - 4/5 10:00</li>
-                                <li>取還車地點：南十字車站</li>
-                                <li>租車公司：SIXT</li>
-                                <li>車款：KIA CARNIVAL</li>
-                            </ul>
-                        </li>
-                        <li><strong>黃金海岸/布里斯本：</strong>
-                            <ul class="list-circle list-inside ml-4">
-                                <li>時間：4/6 12:30 - 4/9 12:30</li>
-                                <li>取車地點：黃金海岸機場</li>
-                                <li>還車地點：布里斯本市區</li>
-                                <li>租車公司：Europcar</li>
-                                <li>車款：KIA CARNIVAL</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">住宿資訊</h3>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li><strong>2026/4/1 菲利浦島：</strong> nrma phillip island beachfront holiday park (雙臥室小屋，一間雙人床一間兩個雙層床)</li>
-                        <li><strong>2026/4/2 酒莊：</strong> Balgownie Estate Yarra Valley (雙臥室套房酒莊住宿，含早晚餐)</li>
-                        <li><strong>2026/4/3-5 墨爾本：</strong> Amazing sea&habour views brand new 2B2B Apt in CBD (雙臥室公寓，南十字車站對面，附近停車場網路預約有優惠)</li>
-                        <li><strong>2026/4/6-8 黃金海岸：</strong> Meriton Suites Surfers Paradise (雙臥室套房公寓，76樓海景公寓，包含3日停車費75澳幣)</li>
-                        <li><strong>2026/4/9-10 布里斯本：</strong> Mertion Suites Herschel Street (雙臥室套房公寓，65-73樓公寓，包含延遲退房至13:00 (60澳幣))</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-yellow-600 mb-2">備註</h3>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>別忘了攜帶轉換插頭！</li>
-                        <li>隨身攜帶護照影本。</li>
-                        <li>建議提前預訂澳洲境內航班 (MEL - OOL)。</li>
-                        <li>盡情享受您的旅程！</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        
-
-        <!-- Attraction Introduction Section -->
-        <section class="mb-10 p-6 bg-blue-50 rounded-lg shadow-sm">
-            <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4 border-b-2 border-blue-300 pb-2">各景點簡介</h2>
-            <p class="text-base sm:text-lg leading-relaxed text-gray-700">
-                此處將提供您旅程中各主要景點的詳細介紹。目前此區塊為空白，您可以自行填入各景點的特色、開放時間、門票資訊等，讓您的手冊更加豐富。
+    <!-- 聯絡我們區塊 -->
+    <section id="contact" class="py-16 px-4 md:px-8 bg-primary-color text-secondary-color">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">
+                <span class="lang-text" data-lang="zh">聯絡我們</span>
+                <span class="lang-text hidden" data-lang="en">Contact Us</span>
+            </h2>
+            <p class="text-xl mb-10 opacity-90">
+                <span class="lang-text" data-lang="zh">
+                    我們歡迎尊敬的供應商和合作夥伴進行諮詢。請隨時與我們聯繫：
+                </span>
+                <span class="lang-text hidden" data-lang="en">
+                    We welcome inquiries from our esteemed suppliers and partners. Please feel free to reach out to us:
+                </span>
             </p>
-            <ul class="list-disc list-inside space-y-2 mt-4 text-gray-700">
-                <li><strong>Lune Croissanterie：</strong> 墨爾本著名的可頌麵包店，以其酥脆的口感和創新的口味聞名。</li>
-                <li><strong>菲利浦島企鵝歸巢：</strong> 每天黃昏時分，小企鵝會從海中上岸，搖搖擺擺地走回巢穴，是令人難忘的自然奇觀。</li>
-                <li><strong>Puffing Billy Railway：</strong> 墨爾本東南部的百年蒸汽火車，穿梭於丹頓農山脈的森林中，提供懷舊的體驗。</li>
-                <li><strong>澳洲國家航空博物館：</strong> 位於墨爾本，展示澳洲航空歷史，部分展品提供飛行模擬體驗。</li>
-                <li><strong>疏芬山金礦鎮：</strong> 位於巴拉瑞特，重現19世紀淘金熱時期的生活場景，可以體驗淘金、參觀博物館。</li>
-                <li><strong>可倫賓野生動物園 (Currumbin Wildlife Sanctuary)：</strong> 黃金海岸的知名動物園，可以近距離接觸澳洲特有動物，如無尾熊、袋鼠。</li>
-                <li><strong>海洋世界 (Sea World)：</strong> 黃金海岸的主題公園，結合海洋生物展示、遊樂設施和表演。</li>
-                <li><strong>太平洋市集購物中心 (Pacific Fair Shopping Centre)：</strong> 黃金海岸最大的購物中心之一，提供多樣的品牌和餐飲選擇。</li>
-                <li><strong>龍柏無尾熊動物園 (Lone Pine Koala Sanctuary)：</strong> 布里斯本的無尾熊保護區，是世界上最古老的無尾熊保護區，可以抱無尾熊拍照。</li>
-                <li><strong>南岸公園：</strong> 布里斯本市中心的綠洲，擁有海灘、花園、餐廳和文化設施。</li>
-                <li><strong>皇后街購物中心 (Queen Street Mall)：</strong> 布里斯本市中心的主要購物區，匯集了各種商店和百貨公司。</li>
-            </ul>
-        </section>
 
-        <!-- Footer -->
-        <footer class="text-center py-6 bg-gray-700 text-white rounded-lg mt-8 shadow-md">
-            <p class="text-sm sm:text-base">&copy; 2025 您的旅遊手冊。祝您旅途愉快！</p>
-            <p class="text-xs sm:text-sm mt-2 opacity-75">由 Gemini 協助生成</p>
-        </footer>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <!-- 電話資訊卡片 -->
+                <div class="bg-white text-primary-color p-6 rounded-xl shadow-md w-full md:w-auto flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-3 text-accent-color" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <p class="text-2xl font-semibold mb-2">
+                        <span class="lang-text" data-lang="zh">電話</span>
+                        <span class="lang-text hidden" data-lang="en">Phone</span>
+                    </p>
+                    <a href="tel:+886910638716" class="text-xl hover:underline">+886 910 638 716</a>
+                </div>
 
-    </div>
+                <!-- 電子郵件資訊卡片 -->
+                <div class="bg-white text-primary-color p-6 rounded-xl shadow-md w-full md:w-auto flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-3 text-accent-color" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 4v7a2 2 0 002 2h14a2 2 0 002-2v-7m-18 0l-2 2h22l-2-2" />
+                    </svg>
+                    <p class="text-2xl font-semibold mb-2">
+                        <span class="lang-text" data-lang="zh">電子郵件</span>
+                        <span class="lang-text hidden" data-lang="en">Email</span>
+                    </p>
+                    <a href="mailto:info@ceriseselect.com" class="text-xl hover:underline">info@ceriseselect.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="bg-primary-color text-secondary-color py-8 px-4 md:px-8 text-center text-sm opacity-80 border-t border-accent-color">
+        <div class="max-w-6xl mx-auto">
+            <p id="footer-text">
+                <span class="lang-text" data-lang="zh">&copy; 2025 果璽國際有限公司. 版權所有。</span>
+                <span class="lang-text hidden" data-lang="en">&copy; 2025 Cerise Select International Co., Ltd. All rights reserved.</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript 用於語言切換功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const langToggleBtn = document.getElementById('lang-toggle');
+            const langTexts = document.querySelectorAll('.lang-text'); // 選取所有具有 lang-text class 的元素
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const footerTextElement = document.getElementById('footer-text'); // 獲取頁腳文字元素
+
+            // 初始語言設定
+            let currentLang = 'zh'; // 預設為中文
+            langToggleBtn.textContent = 'English'; // 按鈕顯示切換目標語言
+
+            // 根據當前語言更新文字顯示的函數
+            function updateLanguageDisplay() {
+                langTexts.forEach(element => {
+                    if (element.getAttribute('data-lang') === currentLang) {
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                });
+            }
+
+            // 語言切換按鈕點擊事件監聽
+            langToggleBtn.addEventListener('click', function() {
+                if (currentLang === 'zh') {
+                    currentLang = 'en';
+                    langToggleBtn.textContent = '中文';
+                } else {
+                    currentLang = 'zh';
+                    langToggleBtn.textContent = 'English';
+                }
+                updateLanguageDisplay(); // 切換語言後更新所有相關文字
+            });
+
+            // 初始載入時更新語言顯示
+            updateLanguageDisplay();
+        });
+    </script>
 </body>
 </html>
