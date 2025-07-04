@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-color': '#0D2B4C', /* 深邃藍 - 更具質感與深度 */
+                        'primary-color': '#081A33', /* 深邃藍 - 更具質感與深度 */
                         'secondary-color': '#F0F2F5', /* 溫和淺灰 - 替代米白，更顯高級感 */
                         'accent-color': '#DAA520', /* 經典金 - 更飽和、更具份量感的金色 */
                         'text-color': '#4A4A4A', /* 柔和深灰 - 搭配淺灰背景，提升閱讀舒適度 */
@@ -27,8 +27,12 @@
     
     <!-- 引入 Google Fonts - Inter 字體，提供現代且清晰的閱讀體驗 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- 引入 Google Fonts - Playfair Display 字體，用於 Logo 文字 -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- 引入 Google Fonts - Cormorant Garamond 字體，用於更優雅的 Logo 文字 (備用) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+    <!-- 引入 Google Fonts - Great Vibes 字體，用於手寫感的 Logo 文字 (備用) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- 引入 Google Fonts - Sacramento 字體，用於更優雅的手寫感 Logo 文字 -->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -47,9 +51,9 @@
 
         /* 自定義 Header Logo 文字樣式 */
         .header-logo-text {
-            font-family: 'Playfair Display', serif; /* 應用 Playfair Display 字體 */
-            font-weight: 700; /* 加粗字體 */
-            font-size: 2.5rem; /* 較大的字體大小 */
+            font-family: 'Sacramento', cursive; /* 應用 Sacramento 字體，具有更優雅的手寫感 */
+            font-weight: normal; /* Sacramento 字體通常不需要加粗，保持其優雅的筆觸 */
+            font-size: 2.8rem; /* 稍微調整字體大小，以更好地呈現新字體 */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 添加輕微陰影，增加立體感 */
         }
 
@@ -77,12 +81,12 @@
     <!-- 導航欄/頂部區域 -->
     <header class="bg-primary-color text-secondary-color py-6 px-4 md:px-8 shadow-lg">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
-            <!-- 公司 Logo 文字 (使用 Playfair Display 字體) -->
+            <!-- 公司 Logo 文字 (使用 Sacramento 字體) -->
             <div class="header-logo-text text-accent-color mb-4 md:mb-0">Cerise Select</div>
             
             <!-- 導航連結與語言切換 -->
             <nav class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-                <ul class="flex space-x-6 text-lg font-medium">
+                <ul class="flex flex-nowrap space-x-2 sm:space-x-4 md:space-x-6 text-base sm:text-lg font-medium">
                     <li><a href="#freshness-journey" class="hover:text-accent-color transition duration-300" data-nav-key="freshness-journey">
                         <span class="lang-text" data-lang="zh">新鮮旅程</span>
                         <span class="lang-text hidden" data-lang="en">Freshness Journey</span>
@@ -113,14 +117,16 @@
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:justify-center">
             <!-- Banner 左側 Logo 佔位符 -->
             <div class="md:mr-8 mb-6 md:mb-0 flex-shrink-0">
-                <img src="logo1.jpg" alt="Cerise Select Icon" class="h-24 w-24 rounded-full shadow-lg">
+                <!-- 調整 logo1.jpg 的尺寸 -->
+                <img src="logo1.jpg" alt="Cerise Select Icon" class="h-32 w-32 rounded-full shadow-lg">
             </div>
             <div class="text-center md:text-left flex-grow">
-                <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                <!-- 調整 h1 和 p 的字體大小 -->
+                <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-4">
                     <span class="lang-text" data-lang="zh">直接從農場到您手中：極致新鮮，每口盡享</span>
                     <span class="lang-text hidden" data-lang="en">Farm to Your Table: Unrivaled Freshness, Every Bite</span>
                 </h1>
-                <p class="text-xl md:text-2xl font-light opacity-90">
+                <p class="text-lg md:text-xl font-light opacity-90">
                     <span class="lang-text" data-lang="zh">Cerise Select：全球嚴選，快速直達，為您帶來最新鮮、最健康的頂級水果體驗。</span>
                     <span class="lang-text hidden" data-lang="en">Cerise Select: Globally Sourced, Swiftly Delivered – Your Direct Path to Premium Fresh Fruits.</span>
                 </p>
@@ -274,7 +280,7 @@
                         我們理解批發客戶對穩定供應和卓越品質的需求。Cerise Select 憑藉強大的全球採購網絡和高效的物流系統，確保您能獲得最新鮮、最優質的水果，滿足您的市場需求。無論是零售商、餐廳還是其他分銷商，我們都提供靈活的合作方案。
                     </span>
                     <span class="lang-text hidden" data-lang="en">
-                        We understand the wholesale client's need for consistent supply and exceptional quality. With our robust global sourcing network and efficient logistics, Cerise Select ensures you receive the freshest, finest fruits to meet your market demands. We offer flexible partnership solutions for retailers, restaurants, and other distributors.
+                        We understand the wholesale client's need for consistent supply and exceptional quality. With our robust global sourcing network and efficient logistics, Cerise Select ensures you receive the freshest, finest fruits to meet your market demands. Whether for retailers, restaurants, or other distributors, we offer flexible partnership solutions.
                     </span>
                 </p>
                 <a href="#contact" class="inline-block bg-primary-color text-secondary-color px-8 py-3 rounded-xl font-semibold hover:bg-accent-color hover:text-primary-color transition duration-300">
